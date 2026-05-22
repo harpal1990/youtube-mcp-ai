@@ -1,0 +1,27 @@
+body {
+    background: #111;
+    color: white;
+    font-family: Arial;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+textarea {
+    height: 400px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube MCP Client</title>
+
+    <style>
+        body {
+            background: #111;
+            color: white;
+            font-family: Arial;
+            padding: 30px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        textarea {
+            height: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🎥 YouTube MCP Client</h1>
+
+<input
+    type="text"
+    id="videoUrl"
+    placeholder="Paste YouTube URL"
+/>
+
+<br>
+
+<button onclick="summarizeVideo()">
+    Summarize Video
+</button>
+
+<button onclick="getTranscript()">
+    Get Transcript
+</button>
+
+<br><br>
+
+<input
+    type="text"
+    id="question"
+    placeholder="Ask question from video"
+/>
+
+<button onclick="askQuestion()">
+    Ask AI
+</button>
+
+<br><br>
+
+<textarea id="output"></textarea>
+
+<script>
+
+async function summarizeVideo() {
+
+    const url = document.getElementById("videoUrl").value;
+
+    const response = await fetch("/summarize", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            url: url
+        })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("output").value = data.result;
+}
+
+async function getTranscript() {
+
+    const url = document.getElementById("videoUrl").value;
+
+    const response = await fetch("/get_transcript", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            url: url
+        })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("output").value = data.result;
+}
+
+async function askQuestion() {
+
+    const url = document.getElementById("videoUrl").value;
+
+    const question = document.getElementById("question").value;
+
+    const response = await fetch("/ask", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            url: url,
+            question: question
+        })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("output").value = data.result;
+}
+
+</script>
+
+</body>
+</html>
