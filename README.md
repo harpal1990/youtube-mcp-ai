@@ -78,8 +78,8 @@ youtube-mcp-server/
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/youtube-mcp-server.git
-cd youtube-mcp-server
+git clone https://github.com/harpal1990/youtube-mcp-ai.git
+cd youtube-mcp-ai
 ```
 
 ---
